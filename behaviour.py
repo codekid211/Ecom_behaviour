@@ -10,7 +10,7 @@ from sklearn.metrics import accuracy_score, confusion_matrix
 # Load the dataset
 @st.cache_data
 def load_data():
-    data = pd.read_csv('2019-Oct.csv')
+    data = pd.read_csv('/Users/darksurrealya/Projects/Ecom_behaviour/datasets/2019-Oct.csv')
     return data
 
 data = load_data()
