@@ -7,10 +7,11 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, confusion_matrix
 
+st.set_page_config(page_title="Customer Behavior Prediction", page_icon="🛒", layout="wide")
 # Load the dataset
 @st.cache_data
 def load_data():
-    data = pd.read_csv('/Users/darksurrealya/Projects/Ecom_behaviour/datasets/2019-Oct.csv')
+    data = pd.read_csv('dataset/2019-Oct.csv')
     return data
 
 data = load_data()
@@ -67,7 +68,7 @@ def evaluate_model(model, X_test, y_test):
     return accuracy, cm
 
 def main():
-    st.set_page_config(page_title="Customer Behavior Prediction", page_icon="🛒", layout="wide")
+    
     
     st.title("🛒 Customer Behavior Prediction")
     st.write("Analyze and predict customer behavior based on e-commerce data.")
