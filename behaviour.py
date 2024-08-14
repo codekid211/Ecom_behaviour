@@ -1,5 +1,6 @@
 import logging
-
+import pickle
+import os
 # Setup basic configuration for logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
@@ -65,10 +66,15 @@ def prepare_data_for_model(data):
     return train_test_split(X, y, test_size=0.2, random_state=42)
 
 def train_model(X_train, y_train):
-    logging.info("Training model")
-    model = RandomForestClassifier(n_estimators=100, random_state=42)
-    model.fit(X_train, y_train)
-    logging.info("Model training complete")
+    model_path = 'random_forest_model.pkl'
+    if os.path.exists(model_path):
+        with open(model_path, 'rb') as file:
+            model = pickle.load(file)
+    else:
+        model = RandomForestClassifier(n_estimators=100, random_state=42)
+        model.fit(X_train, y_train)
+        with open(model_path, 'wb') as file:
+            pickle.dump(model, file)
     return model
 
 def evaluate_model(model, X_test, y_test):
